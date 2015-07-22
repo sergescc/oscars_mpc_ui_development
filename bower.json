@@ -1,0 +1,31 @@
+{
+  "name": "OSCARS_MPC_UI",
+  "version": "0.0.1",
+  "main": "app/",
+  "repository": {
+    "type": "git"
+  },
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "bootstrap-additions",
+    "**/.*",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-route": "latest",
+    "bootstrap": "latest",
+    "angular-google-maps": "latest",
+    "bootstrap-additions": "latest",
+    "angular-ui": "latest",
+    "jquery": "latest",
+    "angular-bootstrap": "latest"
+  },
+  "authors": [
+    "Sergio Coronado <Sergio_Coronado@student.uml.edu>"
+  ],
+  "description": "OSCARS Multi-Path Client UI",
+  "license": "BSD"
+}

@@ -1,0 +1,30 @@
+{
+	"name": "oscars_mpc_ui",
+	"version": "0.0.1",
+	"description": "A Web UI for the Oscars Multi Path Client",
+ 	"readme": "READMEconcatmd",
+  	"url": "https://github.com/sergescc/OSCARS_MPC_UI/issues",
+  	"email": "Sergio_Coronado@student.uml.edu",
+  	"license": "BSD-3-Clause",
+  	"repository": {
+    		"type": "git"
+	},
+	"devDependencies": {
+		"bower": "latest",
+		"grunt": "latest",
+		"grunt-browser-sync": "latest",
+		"grunt-concat-css" : "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-relative-root": "latest",
+		"grunt-contrib-clean" : "latest",
+		"grunt-contrib-watch" : "latest",
+		"http-server": "latest"
+	},
+	
+	"scripts" : {
+		"postinstall" : "bower install",
+		"prestart" : "npm install",
+		"start": "http-server -a localhost -p 8000 -c -1"
+	}
+}
+		 

@@ -1,0 +1,6 @@
+{
+	"analytics" : true,
+	"cwd" : "./",
+	"directory" : "assets/libs/", 
+	"interactive": true
+}
