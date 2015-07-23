@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html  ng-app="oscarsMPC_main">
+<html  ng-app="OscarsMPC">
 <head>
 	<meta charset="UTF-8">
 	<title>OSCARS Multi-Path Client</title>
 
 	<!-- Grunt Concatenated CSS file-->
 
-	<link rel="stylesheet" type="text/css" href="css/lib.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/lib.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 	<!-- Font on Site -->
@@ -21,9 +21,26 @@
 	
 	
 	<script src='assets/js/lib.js'></script>
+	
 	<script src='assets/js/main.js'></script>
+	<script src='assets/js/controllers.js'></script>
 	<script src='assets/js/services.js'></script>
-	<script src='assets/js/Controllers.js'></script>
+	
+	
 
 
 </head>
+<body>
+	<div id="wrapper">
+		<div ng-include src="'app/shared/header/header.html'"></div>
+		<div ng-view></div>
+		
+		<div ng-include src="'app/shared/footer/footer.html'"></div>
+	</div>
+<!-- Auto Sync Tool Code Snippet -->
+	<script type='text/javascript' id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.8.0.js'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+
+
+</body>

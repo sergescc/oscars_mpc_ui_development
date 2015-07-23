@@ -21,7 +21,9 @@
     "bootstrap-additions": "latest",
     "angular-ui": "latest",
     "jquery": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-cookies": "~1.4.3",
+    "angular-crypto": "~0.0.3"
   },
   "authors": [
     "Sergio Coronado <Sergio_Coronado@student.uml.edu>"

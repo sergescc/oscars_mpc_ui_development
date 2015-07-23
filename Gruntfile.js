@@ -30,11 +30,12 @@ module.exports = function(grunt) {
             dev: {
                 files: {
                     src : [
-                        'app/**/*.js', 
-                        'app/*.js',
-                        'app/*.html',
-                        'app/**/*.html'
-                    ]
+                    	'./**.html',
+                        './app/**/*.js',
+                        './assets/**/*.js',
+                        './assets/css/*.css',
+                        './index.html'  
+                    ],
                 }
             }
   
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
 
 		watch: {
 			styles: {
-				files: ['./assets/css/*.css',
+				files: ['./assets/**/*.css',
 						'!./assets/css/lib.css'],
 				tasks: ['clean:styles', 'concat_css']
 			},
@@ -72,13 +73,13 @@ module.exports = function(grunt) {
 			},
 			localSevices:
 			{
-				src: ['app/**/*Service.js'],
+				src: ['app/**/services.js'],
 				dest: 'assets/js/services.js'
 
 			},
 			localControllers:
 			{
-				src: ['app/**/*Controller.js'],
+				src: ['app/**/controllers.js'],
 				dest:'assets/js/controllers.js'
 			},
 			libScripts: 
@@ -87,7 +88,10 @@ module.exports = function(grunt) {
 					  './assets/libs/angular-google-maps/dist/angular-google-maps.js',
 					  './assets/libs/lodash/lodash.js',
 					  './assets/libs/angular-bootstrap/ui-bootstrap.js',
-					  './assets/libs/angular-bootstrap/ui-bootstrap-tpls.js'],
+					  './assets/libs/angular-bootstrap/ui-bootstrap-tpls.js',
+					  './assets/libs/angular-cookies/angular-cookies.js',
+					  './assets/libs/angular-crypto/angular-crypto.js',
+					  './assets/libs/angular-route/angular-route.js'],
 				dest: './assets/js/lib.js'
 			}
 
@@ -103,7 +107,7 @@ module.exports = function(grunt) {
 						'./assets/lib/bootstrap-additions/dist/modules.bootstrap-additions.css',
 						'./assets/lib/bootstrap/css/bootstrap.css',
 						'!assets/css/lib.css'],
-				dest: './app/css/lib.css'
+				dest: './assets/css/lib.css'
 			}
 
 		}
