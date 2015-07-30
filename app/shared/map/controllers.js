@@ -2,7 +2,7 @@
 angular.module('MapApp', ['uiGmapgoogle-maps'])
 .controller('MapAppCtrl',['$scope', function($scope){
 
-	$scope.map = { center: { latitude: 40, longitude: -100 }, zoom: 5 };
+	$scope.map = { center: { latitude: 36, longitude: -100 }, zoom: 5 };
 	$scope.styles = [ { "stylers": [ { "hue": "#00ddff" },
 	 { "saturation": -70 } ] },
 	 { "featureType": "road.local", "stylers": [ { "visibility": "off" } ] },

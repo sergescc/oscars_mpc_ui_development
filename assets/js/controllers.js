@@ -1,39 +1,71 @@
 
 var authN = angular.module('Authentication')
-	.controller('loginController', ['$scope', '$rootscope', '$location', 'AuthNService', 
-		function ($scope, $rootscope, $location, AuthNService) 
+	.controller('loginController', ['$scope', '$rootScope', '$location', 'authNService', '$modalInstance', '$location', 
+		function ($scope, $rootScope, $location, authNService, $modalInstance, $location ) 
 		{
-			AuthNService.ClearCredentials();
+			
+			$scope.username = "";
+			$scope.password = "";
+			$scope.isError = false;
+			$scope.error;
+
+			authNService.ClearCredentials();
 
 			$scope.login = function () {
+				
 				$scope.dataLoading = true;
 
-				AuthNService.Login($scope.username, $scope.password, function(response) {
-					if(response.sucess) {
-						AuthenNService.SetCredentials($scope.username, $scope.password);
-						$location.path('/');
+				authNService.Login($scope.username, $scope.password, function(response) {
+					if(response.success) {
+						authNService.SetCredentials($scope.username, $scope.password);
+						$location.path('/user/'+$scope.username);
+						$modalInstance.close();
 					}
 					else {
+						$scope.isError = true;
 						$scope.error = response.message;
 						$scope.dataLoading = false;
+						$location.path('/spash');
 					}
 				});
-			};
+			}
+
+			$scope.cancel = function () {
+				$modalInstance.dismiss('cancel');
+			};			
+
 		}]);
 angular.module('Splash')
 .controller('splashCtrl' , [ '$scope', '$http' , function ($scope , $http) {
 
 }])
 angular.module('User')
-.controller('userCtrl', [ '$scope', '$http' , function ($scope, $http) {
+.controller('userCtrl', [ '$scope', '$http' , '$routeParams', function ($scope, $http, $routeParams) {
 
+
+	$scope.username = $routeParams.username;
 
 }]);
 var header = angular.module('HeaderModule')
-.controller('headerCtrl', [ '$scope', function ($scope) {
+.controller('headerCtrl', [ '$scope','$modal','$location','authNService','$rootScope',
+ function ($scope, $modal, $location, authNService, $rootScope) {
 
-	$scope.loginButton =  "Login";
-	$scope.registerButton = "Register";
+ 	$scope.loginButton;
+	$scope.registerButton;
+
+
+	if (!$rootScope.globals.currentUser)
+	{
+		$scope.loginButton = "Login";
+		$scope.registerButton = "Register";
+	}
+	else
+	{
+		$scope.loginButton = "Logout";
+		$scope.registerButton = "Settings";
+	}
+
+
 
 	$scope.toggleLogin = function()
 	{
@@ -56,12 +88,55 @@ var header = angular.module('HeaderModule')
 			$scope.registerButton = "Register";
 		}
 	}
+
+	$scope.animationsEnabled = true;
+
+	$scope.loginClick = function (){
+		if ($scope.loginButton === "Login")
+		{
+			$scope.open('sm');
+		}
+		else 
+		{
+			authNService.ClearCredentials();
+			$scope.toggleLogin();
+			$scope.toggleRegister();
+			$location.path('/splash');
+		}
+	};
+
+	$scope.registerClick = function () {};
+
+	$scope.open = function (size) {
+
+		var modalInstance = $modal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'app/components/authentication/loginModal.html',
+			controller: 'loginController',
+			size: size,
+			resolve: {
+
+				}
+		});
+
+		modalInstance.result.then(function() {
+		$scope.toggleLogin();
+		$scope.toggleRegister();
+		
+	}, function() {
+		authNService.ClearCredentials();
+		$location.path('/splash')
+	});
+	};
+
+
+
 }]);
 
 angular.module('MapApp', ['uiGmapgoogle-maps'])
 .controller('MapAppCtrl',['$scope', function($scope){
 
-	$scope.map = { center: { latitude: 40, longitude: -100 }, zoom: 5 };
+	$scope.map = { center: { latitude: 36, longitude: -100 }, zoom: 5 };
 	$scope.styles = [ { "stylers": [ { "hue": "#00ddff" },
 	 { "saturation": -70 } ] },
 	 { "featureType": "road.local", "stylers": [ { "visibility": "off" } ] },

@@ -1,0 +1,23 @@
+
+<div id="loginModal">
+	<br>
+	<div class="alert alert-danger" id="loginError" role="alert" ng-show="isError">
+ 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  		<span class="sr-only">Error:</span>
+  		{{error}}
+	</div>
+	<div>
+	<input id="loginInput" type="text" placeholder="Username" ng-model="username">
+	</div>
+	<div>
+	<input id="loginInput" type="password" placeholder="Password" ng-model="password">
+	</div>
+
+	
+
+	<button class="btn btn-primary" id="loginButtons" style="margin-right: 25px" ng-click="login()">Login</button>
+	<button class="btn btn-info" id="loginButtons" style="margin-right : 10px" ng-click="cancel()">Cancel</button>
+	<br>
+
+</div>
+</div>
